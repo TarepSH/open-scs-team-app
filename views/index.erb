@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 30%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+img {
+    display: block;
+    margin: 0 auto;
+}
+</style>
+
+
+<% project_id = "a4a866135301c73e81fc1684babf28b88a72ee4a"%>
+<%# Instantiates a client%>
+<% vision = Google::Cloud::Vision.new project: project_id%>
+
+<%#just testing:%>
+
+<%if @filename.nil? || @filename.empty?%>
+<% @filename = "apple-tree.jpg"%>
+<%end%>
+<%# The name of the image file to annotate%>
+<% file_name = "./public/#{@filename}"%>
+
+<%# Performs label detection on the image file%>
+<%labels = vision.image(file_name).labels%>
+
+<%puts "Labels:"%>
+<%labels.each do |label|%>
+  <%puts label.description%>
+<% end %>
+
+<%@file_name_data = file_name.split('/')[-1]%>
+  <%@labels_data = labels%>
+</head>
+<body>
+
+
+
+
+
+
+<img src="<%= @file_name_data %>" height="400">
+
+  <h1><%= @file_name_data %></h1>
+
+
+<table>
+  <tr>
+<th>#</th>
+    <th>Lable</th>
+    <th>Score</th>
+  </tr>
+
+  <% @labels_data.each_with_index do |label, index| %>
+<tr>
+<td><%= index+1 %></td>
+  <td><%= label.description %></td>
+  <td><%= label.score %></td>
+</tr>
+  <% end %>
+
+
+</table>
+
+
+
+
+
+
+
+        <h1>Upload Image</h1>
+
+        <form action="/save_image" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" capture="camera">
+            <input type="submit" value="Upload image">
+        </form>
+
+
+
+</body>
+</html>
+
+
+
