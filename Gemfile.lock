@@ -66,6 +66,7 @@ PLATFORMS
 
 DEPENDENCIES
   google-cloud-vision (~> 0.25.0)
+  googleauth
   sinatra
 
 BUNDLED WITH
