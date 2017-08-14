@@ -1,3 +1,5 @@
+
+
 #Imprts Sintra gem for webserver and DSL for our Ruby app
 #require 'sinatra'
 
@@ -23,3 +25,4 @@ post '/save_image' do
 
  erb :index
 end
+

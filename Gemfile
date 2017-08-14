@@ -1,5 +1,5 @@
 source "http://rubygems.org/"
 
 gem 'sinatra'
-gem 'google-cloud-vision', '~> 0.20.0'
+gem 'google-cloud-vision', '~> 0.25.0'
 

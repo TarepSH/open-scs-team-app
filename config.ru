@@ -4,6 +4,10 @@ require "google/cloud/vision"
 
 Bundler.require
 
-require './test.rb'
-run MySinatraApp
+require './test'
+
+run Sinatra::Application
+
+
+
 
